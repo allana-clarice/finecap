@@ -1,0 +1,58 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}E-commerce{% endblock %}</title>
+    <link href="{% static 'style.css' %}" rel="stylesheet">
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <h1>E-commerce RS</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'lista_reservas' %}">Reservas</a></li>
+            </ul>
+            <div>
+                <input type="text" placeholder="Procure aqui!" name="busca" />
+                <button class="enviar" type="submit" class="btn btn-danger">Buscar</button>
+            </div>
+        </nav>
+    </header>
+<h4 class="text-center mb-3">Formulário para cadastro de Reservas
+    <hr>
+    <div class="container">
+            
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label "><strong>Cnpj</strong></label>
+                    {{form.cnpj}}
+                  </div>
+                
+                  <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label"><strong>Nome da empresa</strong></label>
+                    {{form.nome_empresa}}
+                  </div>
+                
+                  <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label"><strong>Categoria da empresa</strong></label>
+                    {{ form.categoria_empresa }}
+                  </div>
+    
+                  <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label"><strong>stand</strong></label>
+                    {{ form.stand }}
+                  </div>
+                  <button type="submit" class="btn btn-secondary">Enviar</button>
+    </body>
+    </html>
+<footer style="position: fixed; width: 100%;">
+  <p>© {% now "Y" %} Todos os direitos reservados.</p>
+  <p>Contano: RStands@gmail.com.</p>
+</footer>

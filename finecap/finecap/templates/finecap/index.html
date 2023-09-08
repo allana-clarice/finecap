@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Reservas{% endblock %}</title>
+    <link href="{% static 'style.css' %}" rel="stylesheet">
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <h1>E-commerce RS</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'lista_reservas' %}">Reservas</a></li>
+            </ul>
+            <div>
+                <input type="text" placeholder="Procure aqui!" name="busca" />
+                <button class="enviar" type="submit" class="btn btn-danger">Buscar</button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        {% block center %}
+        Bem-vindos ao maior sites de reservas de stands para FINECAP, o gigantesco evento que agita toda regiao. Venha conosco e garanta o melhor!
+        {% endblock %}
+    </main>
+
+    <footer style="position: fixed; width: 100%;">
+        <p>© {% now "Y" %} Todos os direitos reservados.</p>
+        <p>Contano: RStands@gmail.com.</p>
+    </footer>
+</body>
+</html>

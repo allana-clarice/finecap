@@ -16,13 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from finecap.views import adicionar_reserva,excluir_reserva,detalhes_reserva,lista_reservas,index
+from finecap.views import *
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('', index, name='index'),
+    path('', index, name="index"),
     path('adicionar/', adicionar_reserva, name='adicionar_reserva'),
-    path('listar', lista_reservas, name='lista_reservas'),
-    path('detalhe/<int:id>/', detalhes_reserva, name='detalhes_reserva'),
-    path('excluir_reserva/<int:id>/', excluir_reserva, name='exluir_reserva'),
+    path('listar/', listar_reservas, name='listar_reservas'),
+    path('editar/<int:reserva_id>/', editar_reserva, name='editar_reserva'),
+    path('excluir/<int:reserva_id>/', excluir_reserva, name='excluir_reserva'),
+    path('reserva/<int:reserva_id>/', detalhes_reserva, name='detalhes_reserva'),
 ]
+

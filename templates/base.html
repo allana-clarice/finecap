@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>RSFINECAP</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        .footer {
+            background-color: #242424;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+        }
+        .navbar {
+            background-color: #242424;
+            padding: 10px 0;
+        }
+        .navbar a {
+            color: #fff;
+        }
+        h4 {
+            font-size: 18px;
+        }
+        main {
+            background-color: #fff;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">RSFINECAP</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'reserva:reserva_listar' %}">Reservas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'stand:stand_listar' %}">Stands</a>
+                    </li>
+                </ul>
+            </div>
+            <span class="navbar-text">
+                <a href="{% url 'account_login' %}" class="fas fa-user"></a>
+            </span>
+        </div>
+    </nav>
+    
+    <main>
+        {% block main %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <span class="text-muted">&copy; {{ year }} RSFINECAP. Todos os direitos reservados.</span>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

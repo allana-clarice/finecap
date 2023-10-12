@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+<!-- ======= Seção Inicial ======= -->
+<section id="hero" class="hero">
+  <div class="inicio1">
+    <div class="inicio2">
+      <h3>Bem vindo ao nosso site, o melhor local para voce realizar sua reserva para FINECAP! O gigantesco evento que agita todo região.</h3>
+      <hr><hr>
+      <a href="{% url 'stand:stand_cadastrar' %}" class="btn btn-primary btn-sm">Novo Stand</a>
+      <br>
+      <br>
+
+      {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+
+    </div>
+  </div>
+</section>
+
+<!-- ======= Seção de stand ======= -->
+<section id="portfolio" class="portfolio sections-bg">
+  <div class="container" data-aos="fade-up">
+
+    <div class="section-header">
+      <h2>Stands cadastradas</h2>
+    </div>
+
+    <div class="portfolio-isotope" data-portfolio-filter="*" data-portfolio-layout="masonry"
+      data-portfolio-sort="original-order" data-aos="fade-up" data-aos-delay="100">
+      
+
+      <div class="row gy-4 portfolio-container">
+
+        {% for object in object_list %}
+        <div class="col-xl-4 col-md-6 portfolio-item filter-app">
+          <div class="portfolio-wrap">
+            <a href="" data-gallery="portfolio-gallery-app" class="glightbox">
+              {% if object.imagem %}
+              <img src="{{ object.imagem.url }}" class="img-fluid" alt="">
+              {% endif %}
+            </a>
+            <div class="portfolio-info">
+              <h4> Nome da empresa: {{ object.localizacao }}</a></h4>
+              <h4> Categoria da empresa: {{ object.valor }} </a></h4>
+              <td>
+                <a href="{% url 'stand:stand_editar' object.pk %}" class="btn btn-primary btn-sm">Editar</a>
+                <a href="{% url 'stand:stand_deletar' object.pk %}" class="btn btn-danger btn-sm">Remover</a>
+              </td>
+            </div>
+          </div>
+        </div><!-- End Item -->
+
+        {% empty %}
+        <tr>
+          <td colspan="4">
+            <p>Não existem stands cadastrados...</p>
+          </td>
+        </tr>
+
+        {% endfor %}
+        <br><br>
+        
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-center">
+              {% if page_obj.has_previous %}
+                  <li class="page-item">
+                      <a class="page-link" href="?page=1" aria-label="Primeira">
+                          <span aria-hidden="true">&laquo;&laquo;</span>
+                      </a>
+                  </li>
+                  <li class="page-item">
+                      <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Anterior">
+                          <span aria-hidden="true">&laquo;</span>
+                      </a>
+                  </li>
+              {% endif %}
+      
+              {% for num in page_obj.paginator.page_range %}
+                  <li class="page-item{% if num == page_obj.number %} active{% endif %}">
+                      <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                  </li>
+              {% endfor %}
+      
+              {% if page_obj.has_next %}
+                  <li class="page-item">
+                      <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Próxima">
+                          <span aria-hidden="true">&raquo;</span>
+                      </a>
+                  </li>
+                  <li class="page-item">
+                      <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Última">
+                          <span aria-hidden="true">&raquo;&raquo;</span>
+                      </a>
+                  </li>
+              {% endif %}
+          </ul>
+      </nav>
+
+{% endblock %}

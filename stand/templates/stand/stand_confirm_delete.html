@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block main %}
+<h1>Exluir Stand:</h1>
+<hr>
+<br>
+<div class="row">
+    <div class="col-md">
+       <form method="POST"> 
+        {% csrf_token%}
+        <h5>Tem certeza que deseja deletar o stand {{stand}}?</h5>
+        
+        <input class="btn btn-danger" type="submit" value="Sim">
+       
+       </form>
+    </div>
+</div>
+</div>
+
+{% endblock %}
